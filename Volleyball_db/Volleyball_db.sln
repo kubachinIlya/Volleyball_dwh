@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Volleyball_db", "Volleyball_db\Volleyball_db.sqlproj", "{7BA3A789-856E-41FA-81CD-3558670D69CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96CD0659-0263-48A8-8B6C-E64C16E13CC1}
+	EndGlobalSection
+EndGlobal
