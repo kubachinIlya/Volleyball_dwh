@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Volleyball_db", "Volleyball_db\Volleyball_db.sqlproj", "{7BA3A789-856E-41FA-81CD-3558670D69CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_Loader_c_sharp", "Data_Loader_c_sharp\Data_Loader_c_sharp.csproj", "{CAAD0191-93F8-419B-95CE-46A52283F1CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BA3A789-856E-41FA-81CD-3558670D69CD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CAAD0191-93F8-419B-95CE-46A52283F1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAAD0191-93F8-419B-95CE-46A52283F1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAAD0191-93F8-419B-95CE-46A52283F1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAAD0191-93F8-419B-95CE-46A52283F1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
