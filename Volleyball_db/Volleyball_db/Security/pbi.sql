@@ -1,5 +1,3 @@
-﻿CREATE SCHEMA [oth]
+﻿CREATE SCHEMA [pbi]
     AUTHORIZATION [dbo];
-
-
 

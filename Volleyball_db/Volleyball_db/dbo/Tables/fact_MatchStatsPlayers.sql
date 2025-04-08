@@ -5,6 +5,7 @@
     [HostCityID]                INT NULL,
     [HostTeamID]                INT NULL,
     [GuestTeamID]               INT NULL,
+    [TeamID]                    INT NULL,
     [PlayerID]                  INT NULL,
     [Set1]                      INT NULL,
     [Set2]                      INT NULL,
@@ -28,4 +29,6 @@
     [AttackPointPercent]        INT NULL,
     [BlockPoints]               INT NULL
 );
+
+
 

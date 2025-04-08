@@ -1,0 +1,37 @@
+﻿
+
+ 
+
+CREATE VIEW [pbi].[v_F001_fact_MatchStatsPlayers]
+AS
+SELECT 
+     [MatchDateID] AS [MatchDateID]
+    ,[SeasonID] AS [SeasonID]
+    ,[StageID] AS [StageID]
+    ,[HostCityID] AS [HostCityID]
+    ,[HostTeamID] AS [HostTeamID]
+    ,[GuestTeamID] AS [GuestTeamID]
+	,[TeamID] AS [TeamID]
+    ,[PlayerID] AS [PlayerID]
+    ,[Set1] AS [Set1]
+    ,[Set2] AS [Set2]
+    ,[Set3] AS [Set3]
+    ,[Set4] AS [Set4]
+    ,[Set5] AS [Set5]
+    ,[TotalPoints] AS [TotalPoints]
+    ,[BreakPoints] AS [BreakPoints]
+    ,[ScoredLostPoints] AS [ScoredLostPoints]
+    ,[TotalServes] AS [TotalServes]
+    ,[ServeErrors] AS [ServeErrors]
+    ,[ServePoints] AS [ServePoints]
+    ,[TotalReceptions] AS [TotalReceptions]
+    ,[ReceptionErrors] AS [ReceptionErrors]
+    ,[PerfectReceptionPercent] AS [PerfectReceptionPercent]
+    ,[ExcellentReceptionPercent] AS [ExcellentReceptionPercent]
+    ,[TotalAttacks] AS [TotalAttacks]
+    ,[AttackErrors] AS [AttackErrors]
+    ,[AttackBlocks] AS [AttackBlocks]
+    ,[AttackPoints] AS [AttackPoints]
+    ,[AttackPointPercent] AS [AttackPointPercent]
+    ,[BlockPoints] AS [BlockPoints]
+FROM [Volleyball_dwh].[dbo].[fact_MatchStatsPlayers]

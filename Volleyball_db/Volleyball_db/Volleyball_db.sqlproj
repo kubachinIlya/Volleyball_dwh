@@ -68,6 +68,8 @@
     <Folder Include="oth\Stored Procedures\" />
     <Folder Include="Database Triggers\" />
     <Folder Include="Security\" />
+    <Folder Include="pbi\" />
+    <Folder Include="pbi\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\fact_MatchStatsPlayers.sql" />
@@ -87,7 +89,6 @@
     <Build Include="stg_excel\Tables\MatchStatsPlayersGeneral.sql" />
     <Build Include="oth\Tables\SupChangeObjectsLog.sql" />
     <Build Include="oth\Tables\SupLog.sql" />
-    <Build Include="dbo\Views\v_D001_olap_dim_Date.sql" />
     <Build Include="dbo\Functions\IntToDate.sql" />
     <Build Include="dbo\Functions\DateToInt.sql" />
     <Build Include="dbo\Stored Procedures\fill_fact_MatchStatsPlayers.sql" />
@@ -106,5 +107,10 @@
     <Build Include="Database Triggers\BackupObjects.sql" />
     <Build Include="Security\stg_excel.sql" />
     <Build Include="Security\oth.sql" />
+    <Build Include="pbi\Views\v_D003_dim_Players.sql" />
+    <Build Include="pbi\Views\v_D002_dim_Teams.sql" />
+    <Build Include="pbi\Views\v_D001_dim_Date.sql" />
+    <Build Include="pbi\Views\v_F001_fact_MatchStatsPlayers.sql" />
+    <Build Include="Security\pbi.sql" />
   </ItemGroup>
 </Project>

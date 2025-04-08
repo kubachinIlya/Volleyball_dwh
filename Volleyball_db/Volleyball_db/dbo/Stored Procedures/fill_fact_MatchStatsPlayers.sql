@@ -49,6 +49,7 @@ BEGIN
 					,[HostCityID]
 					,[HostTeamID]
 					,[GuestTeamID]
+					,[TeamID]
 					,[PlayerID]
 					,[Set1]
 					,[Set2]
@@ -79,6 +80,7 @@ BEGIN
 				,HC.[CityID] AS [HostCityID]
 				,IIF(T1.[CityID] = HC.[CityID], T1.[TeamID], T2.[TeamID]) AS [HostTeamID]
 				,IIF(T1.[CityID] = HC.[CityID], T2.[TeamID], T1.[TeamID]) AS [GuestTeamID]
+				,T.[TeamID]
 				,COALESCE(P.[PlayerID], -1) AS [PlayerID]
 				,F.[Set1]
 				,F.[Set2]
@@ -119,6 +121,8 @@ BEGIN
 				ON SUBSTRING(F.[FolderName], CHARINDEX('#', F.[FolderName]) + 1, CHARINDEX('&', F.[FolderName]) - CHARINDEX('#', F.[FolderName]) - 1) = T1.[TeamName]
 			LEFT JOIN [dbo].[dim_Teams] T2
 				ON SUBSTRING(F.[FolderName], CHARINDEX('&', F.[FolderName]) + 1, LEN(F.[FolderName]) - CHARINDEX('&', F.[FolderName])) = T2.[TeamName]
+			LEFT JOIN [dbo].[dim_Teams] T
+				ON T.[TeamName] = F.[TeamName]
 			WHERE
 				F.[PlayerName] != 'Всего'
 				AND [MatchDate] >= @DateFromD 
