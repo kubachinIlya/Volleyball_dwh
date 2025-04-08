@@ -56,5 +56,55 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="stg_excel\" />
+    <Folder Include="stg_excel\Tables\" />
+    <Folder Include="oth\" />
+    <Folder Include="oth\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="oth\Stored Procedures\" />
+    <Folder Include="Database Triggers\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\fact_MatchStatsPlayers.sql" />
+    <Build Include="dbo\Tables\dim_Teams.sql" />
+    <Build Include="dbo\Tables\dim_Stages.sql" />
+    <Build Include="dbo\Tables\dim_Seasons.sql" />
+    <Build Include="dbo\Tables\dim_Players.sql" />
+    <Build Include="dbo\Tables\dim_Date.sql" />
+    <Build Include="dbo\Tables\dim_Combinations.sql" />
+    <Build Include="dbo\Tables\dim_Cities.sql" />
+    <Build Include="dbo\Tables\dim_AttackTypes.sql" />
+    <Build Include="dbo\Tables\dim_Actions.sql" />
+    <Build Include="dbo\Tables\dim_ActionDetails.sql" />
+    <Build Include="dbo\Tables\dim_ActionCodes.sql" />
+    <Build Include="stg_excel\Tables\PlayersList.sql" />
+    <Build Include="stg_excel\Tables\MatchStatsSets.sql" />
+    <Build Include="stg_excel\Tables\MatchStatsPlayersGeneral.sql" />
+    <Build Include="oth\Tables\SupChangeObjectsLog.sql" />
+    <Build Include="oth\Tables\SupLog.sql" />
+    <Build Include="dbo\Views\v_D001_olap_dim_Date.sql" />
+    <Build Include="dbo\Functions\IntToDate.sql" />
+    <Build Include="dbo\Functions\DateToInt.sql" />
+    <Build Include="dbo\Stored Procedures\fill_fact_MatchStatsPlayers.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Teams.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Stages.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Seasons.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Players.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Date.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Combinations.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Cities.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_AttackTypes.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_Actions.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_ActionDetails.sql" />
+    <Build Include="dbo\Stored Procedures\fill_dim_ActionCodes.sql" />
+    <Build Include="oth\Stored Procedures\fill_SupLog.sql" />
+    <Build Include="Database Triggers\BackupObjects.sql" />
+    <Build Include="Security\stg_excel.sql" />
+    <Build Include="Security\oth.sql" />
   </ItemGroup>
 </Project>

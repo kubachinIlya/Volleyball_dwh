@@ -1,0 +1,25 @@
+﻿CREATE TABLE [stg_excel].[MatchStatsSets] (
+    [FileName]                  NVARCHAR (100) NULL,
+    [FolderName]                NVARCHAR (255) NULL,
+    [MatchDate]                 DATE           NULL,
+    [TeamName]                  NVARCHAR (50)  NULL,
+    [SetNumber]                 NVARCHAR (10)  NULL,
+    [PointsOnServe]             INT            NULL,
+    [PointsOnAttack]            INT            NULL,
+    [PointsOnBlock]             INT            NULL,
+    [PointsOnOpponentErrors]    INT            NULL,
+    [TotalPoints]               INT            NULL,
+    [ServeErrors]               INT            NULL,
+    [ServePoints]               INT            NULL,
+    [TotalReceptions]           INT            NULL,
+    [ReceptionErrors]           INT            NULL,
+    [PerfectReceptionPercent]   INT            NULL,
+    [ExcellentReceptionPercent] INT            NULL,
+    [TotalAttacks]              INT            NULL,
+    [AttackErrors]              INT            NULL,
+    [AttackBlocks]              INT            NULL,
+    [AttackPoints]              INT            NULL,
+    [AttackPointPercent]        INT            NULL,
+    [BlockPoints]               INT            NULL
+);
+

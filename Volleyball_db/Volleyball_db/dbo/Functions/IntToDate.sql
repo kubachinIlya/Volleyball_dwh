@@ -1,0 +1,13 @@
+﻿CREATE FUNCTION [dbo].[IntToDate]
+(
+	@Date INT
+)
+RETURNS DATE
+AS
+BEGIN
+	
+	DECLARE @Res DATE
+	SELECT @Res = CAST(CAST(@Date AS NVARCHAR) AS DATE)
+	RETURN @Res
+
+END
