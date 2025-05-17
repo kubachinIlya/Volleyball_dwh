@@ -13,7 +13,7 @@ public abstract class BaseImporter
 
     protected BaseImporter(string connectionString, string rootFolder)
     {
-        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        ExcelPackage.License.SetNonCommercialOrganization("My Noncommercial organization");
         _connectionString = connectionString;
         _rootFolder = rootFolder;
     }
@@ -55,10 +55,19 @@ public abstract class BaseImporter
 
 
     // Обобщенный метод для сохранения данных
-    protected void SaveToDatabase<T>(IEnumerable<T> data, string tableName, string columns)
+    protected void SaveToDatabase<T>(IEnumerable<T> data, string tableName)
     {
+        var properties = typeof(T).GetProperties();
+        var columns = string.Join(", ", properties.Select(p => $"[{p.Name}]"));
+        var parameters = string.Join(", ", properties.Select(p => $"@{p.Name}"));
+
         using var connection = new SqlConnection(_connectionString);
-        connection.Execute($"INSERT INTO {tableName} {columns} VALUES (@{string.Join(", @", typeof(T).GetProperties().Select(p => p.Name))})", data);
+        connection.Execute(
+            $@"INSERT INTO {tableName} 
+            ({columns}) 
+        VALUES 
+            ({parameters})",
+            data);
     }
 }
 

@@ -25,7 +25,11 @@ public class MatchStatsImporter : BaseImporter
             }
         }
     }
-
+    private int ParseSetNumber(string cellValue)
+    {
+        if (string.IsNullOrWhiteSpace(cellValue)) return -1;
+        return int.TryParse(cellValue.Replace("Партия", "").Trim(), out int result) ? result : -1;
+    }
     private void ImportData(string filePath, (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) folderInfo)
     {
         var stats = new List<MatchStatsSet>();
@@ -35,92 +39,6 @@ public class MatchStatsImporter : BaseImporter
         {
             var worksheet = package.Workbook.Worksheets[0];
             for (int row = 2; row <= worksheet.Dimension.Rows; row++)
-            {
-                // ... (логика обработки данных матчей)
-            }
-        }
-
-        SaveToDatabase(stats, "[stg_excel].[MatchStatsSets]", matchStatsColumns);
-    }
-} 
-public class MatchStatSetLoader
-{
-    private readonly string _connectionString;
-    private readonly string _rootFolder;
-
-    public MatchStatSetLoader(string connectionString, string rootFolder)
-    {
-        ExcelPackage.License.SetNonCommercialOrganization("My Noncommercial organization ITMO diploma");
-        _connectionString = connectionString;
-        _rootFolder = rootFolder;
-    }
-
-    public void ProcessAllMatches()
-    {
-        var excelFiles = Directory.EnumerateFiles(_rootFolder, "Партии_*.xlsx", SearchOption.AllDirectories);
-
-        foreach (var filePath in excelFiles)
-        {
-            var folderInfo = GetFolderInfo(filePath);
-            var teamName = Path.GetFileNameWithoutExtension(filePath).Split('_').Last();
-
-            ImportExcelData(filePath, folderInfo);
-        }
-    }
-
-    private (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) GetFolderInfo(string filePath)
-    {
-        var directory = new DirectoryInfo(Path.GetDirectoryName(filePath));
-        var folderName = directory.Name;
-
-        // парсинг даты
-        var dateMatch = Regex.Match(folderName, @"(\d{2}[_-]\d{2}[_-]\d{4})");
-        if (!dateMatch.Success)
-        {
-            throw new FormatException($"Не удалось найти дату в названии папки: {folderName}");
-        }
-
-        var datePart = dateMatch.Value.Replace('_', '-');
-        if (!DateTime.TryParseExact(datePart,
-            new[] { "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy" },
-            CultureInfo.InvariantCulture,
-            DateTimeStyles.None,
-            out var matchDate))
-        {
-            throw new FormatException($"Некорректный формат даты: {datePart}");
-        }
-
-        //   парсинг названий команд
-        var противIndex = folderName.IndexOf("_против_", StringComparison.Ordinal);
-        if (противIndex == -1)
-        {
-            throw new FormatException($"Не найден разделитель команд '_против_' в названии папки: {folderName}");
-        }
-
-        var homeTeamPart = folderName.Substring(0, противIndex);
-        var awayTeamPart = folderName.Substring(противIndex + "_против_".Length);
-
-        var homeTeam = homeTeamPart.Split('_').Last();
-        var awayTeam = awayTeamPart.Split('_').First();
-
-        return (
-            MatchDate: matchDate,
-            HomeTeam: homeTeam,
-            AwayTeam: awayTeam,
-            FolderName: folderName
-        );
-    }
-
-    private void ImportExcelData(string filePath, (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) folderInfo)
-    {
-        var stats = new List<MatchStatsSet>();
-
-        using (var package = new ExcelPackage(new FileInfo(filePath)))
-        {
-            var worksheet = package.Workbook.Worksheets[0];
-            int rowCount = worksheet.Dimension.Rows;
-
-            for (int row = 2; row <= rowCount; row++)
             {
                 var setNumber = ParseSetNumber(worksheet.Cells[row, 1].Text);
                 if (setNumber == -1) continue;
@@ -153,41 +71,7 @@ public class MatchStatSetLoader
             }
         }
 
-        SaveToDatabase(stats);
+        SaveToDatabase(stats, "[stg_excel].[MatchStatsSets]");
     }
-    private int ParseSetNumber(string cellValue)
-    {
-        if (string.IsNullOrWhiteSpace(cellValue)) return -1;
-        return int.TryParse(cellValue.Replace("Партия", "").Trim(), out int result) ? result : -1;
-    }
-
-    private int ParseInt(string value) =>
-    int.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out int result) ? result : 0;
-
-    private decimal ParseDecimal(string value) =>
-        decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result) ? result : 0m;
-
-    private void SaveToDatabase(IEnumerable<MatchStatsSet> stats)
-    {
-        using var connection = new SqlConnection(_connectionString);
-
-        const string query = @"INSERT INTO [Volleyball_dwh].[stg_excel].[MatchStatsSets] (
-            [FileName], [FolderName], [MatchDate], [TeamName], [SetNumber],
-            [PointsOnServe], [PointsOnAttack], [PointsOnBlock], [PointsOnOpponentErrors],
-            [TotalPoints], [ServeErrors], [ServePoints], [TotalReceptions],
-            [ReceptionErrors], [PerfectReceptionPercent], [ExcellentReceptionPercent],
-            [TotalAttacks], [AttackErrors], [AttackBlocks], [AttackPoints],
-            [AttackPointPercent], [BlockPoints]
-        ) VALUES (
-            @FileName, @FolderName, @MatchDate, @TeamName, @SetNumber,
-            @PointsOnServe, @PointsOnAttack, @PointsOnBlock, @PointsOnOpponentErrors,
-            @TotalPoints, @ServeErrors, @ServePoints, @TotalReceptions,
-            @ReceptionErrors, @PerfectReceptionPercent, @ExcellentReceptionPercent,
-            @TotalAttacks, @AttackErrors, @AttackBlocks, @AttackPoints,
-            @AttackPointPercent, @BlockPoints
-        )";
-
-        connection.Execute(query, stats);
-    }
-}
+} 
  
