@@ -36,6 +36,29 @@ public class PlayerStatsImporter : BaseImporterExcel
         var teamName = Path.GetFileNameWithoutExtension(filePath).Split('_').Last();
         Console.WriteLine($"Обработка файла: {filePath}");
 
+        // Получаем название папки матча (например: "9_тур_Кемерово_26-10-2024_Кузбасс_против_Газпром-Югра")
+        var matchFolderName = Path.GetFileName(Path.GetDirectoryName(filePath));
+
+        // Извлекаем название команды соперника из названия папки
+        string opponentTeamName = null;
+        if (matchFolderName.Contains("_против_"))
+        {
+            var parts = matchFolderName.Split(new[] { "_против_" }, StringSplitOptions.None);
+            if (parts.Length == 2)
+            {
+                // Определяем, какая команда является соперником
+                var homeTeam = parts[0].Split('_').Last();
+                opponentTeamName = parts[1].Split('_').First();
+
+                // Если текущая команда совпадает с домашней, то соперник - гостевая команда
+                // Иначе соперник - домашняя команда
+                if (teamName != homeTeam)
+                {
+                    opponentTeamName = homeTeam;
+                }
+            }
+        }
+
         using (var package = new ExcelPackage(new FileInfo(filePath)))
         {
             var worksheet = package.Workbook.Worksheets[0];
@@ -50,6 +73,7 @@ public class PlayerStatsImporter : BaseImporterExcel
                     FolderName = folderInfo.FolderName,
                     MatchDate = folderInfo.MatchDate,
                     TeamName = teamName,
+                    OpponentTeamName = opponentTeamName, // Заполняем поле соперника
                     PlayerNumber = ParsePlayerNumber(playerNumberCell),
                     PlayerName = worksheet.Cells[row, 2].Text.Trim(),
                     Set1 = ParseNullableInt(worksheet.Cells[row, 3].Text),

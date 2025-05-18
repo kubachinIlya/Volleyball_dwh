@@ -9,6 +9,7 @@ public class MatchStatsPlayer
     public string FileName { get; set; }
     public string FolderName { get; set; }
     public DateTime MatchDate { get; set; }
+    public string OpponentTeamName { get; set; }
     public string TeamName { get; set; }
     public int PlayerNumber { get; set; }
     public string PlayerName { get; set; }
