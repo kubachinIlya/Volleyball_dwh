@@ -5,8 +5,10 @@ using System.Globalization;
 using Dapper;
 using System.Text.RegularExpressions;
 // Импортер для статистики матчей
-public class MatchStatsImporter : BaseImporter
+public class MatchStatsImporter : BaseImporterExcel
 {
+    protected override string ReportCode => "MATCH";
+
     public MatchStatsImporter(string connectionString, string rootFolder)
         : base(connectionString, rootFolder) { }
 
@@ -14,15 +16,7 @@ public class MatchStatsImporter : BaseImporter
     {
         foreach (var filePath in Directory.EnumerateFiles(_rootFolder, "Партии_*.xlsx", SearchOption.AllDirectories))
         {
-            try
-            {
-                var folderInfo = GetFolderInfo(filePath);
-                ImportData(filePath, folderInfo);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка в файле {filePath}: {ex.Message}");
-            }
+            ProcessFile(filePath, ImportData);
         }
     }
     private int ParseSetNumber(string cellValue)
@@ -30,8 +24,9 @@ public class MatchStatsImporter : BaseImporter
         if (string.IsNullOrWhiteSpace(cellValue)) return -1;
         return int.TryParse(cellValue.Replace("Партия", "").Trim(), out int result) ? result : -1;
     }
-    private void ImportData(string filePath, (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) folderInfo)
+    private void ImportData(string filePath)
     {
+        var folderInfo = GetFolderInfo(filePath);
         var stats = new List<MatchStatsSet>();
         var teamName = Path.GetFileNameWithoutExtension(filePath).Split('_').Last();
 

@@ -8,15 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Loads\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="EPPlus" Version="8.0.5" />
     <PackageReference Include="EPPlus.Interfaces" Version="8.0.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.5" />
+    <PackageReference Include="ZF.HtmlAgilityPack.Extensions" Version="1.0.3" />
   </ItemGroup>
+	
+    <ItemGroup>
+	    <None Update="appconfig.json">
+		    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    </None>
+    </ItemGroup>
+	
+    <ItemGroup>
+      <Folder Include="AppHosting\" />
+    </ItemGroup>
 
 </Project>

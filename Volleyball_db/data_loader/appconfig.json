@@ -1,0 +1,12 @@
+{
+  "ConnectionStrings": {
+    "VolleyballDB": "Server=.;Database=Volleyball_dwh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;"
+  },
+  "DataPaths": {
+    "BasePath": "C:/Users/Ilya/Documents/ITMO/8ой сем/практика производственная/Списки данных/Списки данных/Сезон_2024-2025"
+  },
+  "ParserSettings": {
+    "VolleyServiceUrl": "https://volleyservice.ru/index.php?option=com_volleyplayers&task=statistic&act=main_stat",
+    "RequestDelayMs": 1500
+  }
+}

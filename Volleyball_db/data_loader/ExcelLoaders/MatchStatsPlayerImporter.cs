@@ -9,8 +9,9 @@ using OfficeOpenXml;
 
 
 // Импортер для статистики игроков
-public class PlayerStatsImporter : BaseImporter
+public class PlayerStatsImporter : BaseImporterExcel
 {
+    protected override string ReportCode => "PLAYER";
     public PlayerStatsImporter(string connectionString, string rootFolder)
         : base(connectionString, rootFolder) { }
 
@@ -18,25 +19,19 @@ public class PlayerStatsImporter : BaseImporter
     {
         foreach (var filePath in Directory.EnumerateFiles(_rootFolder, "Игроки_*.xlsx", SearchOption.AllDirectories))
         {
-            try
-            {
-                var folderInfo = GetFolderInfo(filePath);
-                ImportData(filePath, folderInfo);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка в файле {filePath}: {ex.Message}");
-            }
+            ProcessFile(filePath, ImportData);
         }
     }
+
     private int ParsePlayerNumber(string value)
     {
         var numberPart = new string(value.TakeWhile(char.IsDigit).ToArray());
         return int.TryParse(numberPart, out int result) ? result : 0;
     }
 
-    private void ImportData(string filePath, (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) folderInfo)
+    private void ImportData(string filePath)
     {
+        var folderInfo = GetFolderInfo(filePath);
         var players = new List<MatchStatsPlayer>();
         var teamName = Path.GetFileNameWithoutExtension(filePath).Split('_').Last();
         Console.WriteLine($"Обработка файла: {filePath}");

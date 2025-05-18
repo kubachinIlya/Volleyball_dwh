@@ -1,18 +1,44 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
-using Dapper;
-using OfficeOpenXml;
+using System.Text.Json;
+using System.Threading.Tasks;
 
+public static class Program
+{
+    public static async Task Main(string[] args)
+    {
+        // Загрузка конфигурации
+        var config = AppConfig.LoadConfig();
 
- 
-var basePath = @"C:\Users\Ilya\Documents\ITMO\8ой сем\практика производственная\Списки данных\Списки данных\Сезон_2024-2025";
-var connectionString = "Server=.;Database=Volleyball_dwh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+        // Инициализация импортеров
+        var matchImporter = new MatchStatsImporter(
+            config.ConnectionStrings.VolleyballDB,
+            config.DataPaths.BasePath
+        );
 
-var matchImporter = new MatchStatsImporter(connectionString, basePath);
-var playerImporter = new PlayerStatsImporter(connectionString, basePath);
+        var playerImporter = new PlayerStatsImporter(
+            config.ConnectionStrings.VolleyballDB,
+            config.DataPaths.BasePath
+        );
+        var playersListImporter = new PlayersListImporter(
+            config.ConnectionStrings.VolleyballDB,
+            config.DataPaths.BasePath
+        );
+        // Запуск обработки
+        matchImporter.ProcessAllMatches();
+        playerImporter.ProcessAllPlayers();
+        playersListImporter.ProcessAllPlayers();
 
-matchImporter.ProcessAllMatches();
-playerImporter.ProcessAllPlayers();
+        // Инициализация парсера
+        var parser = new VolleyServiceParser(
+            config.ParserSettings.VolleyServiceUrl,
+            config.ConnectionStrings.VolleyballDB,
+            config.ParserSettings.RequestDelayMs
+        );
+
+        // Запуск парсера
+        await parser.StartParsing();
+
+    }
+}
