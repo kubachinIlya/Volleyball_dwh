@@ -25,20 +25,20 @@ public static class Program
             config.ConnectionStrings.VolleyballDB,
             config.DataPaths.BasePath
         );
-        // Запуск обработки
-       // matchImporter.ProcessAllMatches();
+        //Запуск обработки
+        matchImporter.ProcessAllMatches();
         playerImporter.ProcessAllPlayers();
-      //  playersListImporter.ProcessAllPlayers();
+        playersListImporter.ProcessAllPlayers();
 
-        // Инициализация парсера
-        //var parser = new VolleyServiceParser(
-        //    config.ParserSettings.VolleyServiceUrl,
-        //    config.ConnectionStrings.VolleyballDB,
-        //    config.ParserSettings.RequestDelayMs
-        //);
+        //Инициализация парсера
+        var parser = new VolleyServiceParser(
+            config.ParserSettings.VolleyServiceUrl,
+            config.ConnectionStrings.VolleyballDB,
+            config.ParserSettings.RequestDelayMs
+        );
 
-        //// Запуск парсера
-        //await parser.StartParsing();
+        // Запуск парсера
+        await parser.StartParsing();
 
     }
 }

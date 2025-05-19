@@ -90,7 +90,6 @@ public abstract class BaseImporterExcel
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка загрузки файла {relativePath}: {ex.Message}");
-            // Можно добавить логирование ошибки в отдельную таблицу
         }
     }
     protected (DateTime MatchDate, string HomeTeam, string AwayTeam, string FolderName) GetFolderInfo(string filePath)
