@@ -24,11 +24,15 @@ public class MatchStatsImporter : BaseImporterExcel
         if (string.IsNullOrWhiteSpace(cellValue)) return -1;
         return int.TryParse(cellValue.Replace("Партия", "").Trim(), out int result) ? result : -1;
     }
+    private string ExtractTeamName(string filePath)
+    {
+        return Path.GetFileNameWithoutExtension(filePath).Substring("Партии_".Length);
+    }
     private void ImportData(string filePath)
     {
         var folderInfo = GetFolderInfo(filePath);
         var stats = new List<MatchStatsSet>();
-        var teamName = Path.GetFileNameWithoutExtension(filePath).Split('_').Last();
+        var teamName = ExtractTeamName(filePath);
 
         using (var package = new ExcelPackage(new FileInfo(filePath)))
         {
@@ -43,25 +47,25 @@ public class MatchStatsImporter : BaseImporterExcel
                     FileName = Path.GetFileName(filePath),
                     FolderName = folderInfo.FolderName,
                     MatchDate = folderInfo.MatchDate,
-                    TeamName = folderInfo.HomeTeam, // или другая логика выбора команды
+                    TeamName = teamName,
                     SetNumber = setNumber,
-                    PointsOnServe = ParseInt(worksheet.Cells[row, 2].Text),
-                    PointsOnAttack = ParseInt(worksheet.Cells[row, 3].Text),
-                    PointsOnBlock = ParseInt(worksheet.Cells[row, 4].Text),
-                    PointsOnOpponentErrors = ParseInt(worksheet.Cells[row, 5].Text),
-                    TotalPoints = ParseInt(worksheet.Cells[row, 6].Text),
-                    ServeErrors = ParseInt(worksheet.Cells[row, 7].Text),
-                    ServePoints = ParseInt(worksheet.Cells[row, 8].Text),
-                    TotalReceptions = ParseInt(worksheet.Cells[row, 9].Text),
-                    ReceptionErrors = ParseInt(worksheet.Cells[row, 10].Text),
-                    PerfectReceptionPercent = ParseDecimal(worksheet.Cells[row, 11].Text),
-                    ExcellentReceptionPercent = ParseDecimal(worksheet.Cells[row, 12].Text),
-                    TotalAttacks = ParseInt(worksheet.Cells[row, 13].Text),
-                    AttackErrors = ParseInt(worksheet.Cells[row, 14].Text),
-                    AttackBlocks = ParseInt(worksheet.Cells[row, 15].Text),
-                    AttackPoints = ParseInt(worksheet.Cells[row, 16].Text),
-                    AttackPointPercent = ParseDecimal(worksheet.Cells[row, 17].Text),
-                    BlockPoints = ParseInt(worksheet.Cells[row, 18].Text)
+                    PointsOnServe = ParseInt(worksheet.Cells[row, 3].Text),
+                    PointsOnAttack = ParseInt(worksheet.Cells[row, 5].Text),
+                    PointsOnBlock = ParseInt(worksheet.Cells[row, 7].Text),
+                    PointsOnOpponentErrors = ParseInt(worksheet.Cells[row, 9].Text),
+                    TotalPoints = ParseInt(worksheet.Cells[row, 11].Text),
+                    ServeErrors = ParseInt(worksheet.Cells[row, 12].Text),
+                    ServePoints = ParseInt(worksheet.Cells[row, 13].Text),
+                    TotalReceptions = ParseInt(worksheet.Cells[row, 14].Text),
+                    ReceptionErrors = ParseInt(worksheet.Cells[row, 15].Text),
+                    PerfectReceptionPercent = ParseDecimal(worksheet.Cells[row, 16].Text),
+                    ExcellentReceptionPercent = ParseDecimal(worksheet.Cells[row, 17].Text),
+                    TotalAttacks = ParseInt(worksheet.Cells[row, 18].Text),
+                    AttackErrors = ParseInt(worksheet.Cells[row, 19].Text),
+                    AttackBlocks = ParseInt(worksheet.Cells[row, 20].Text),
+                    AttackPoints = ParseInt(worksheet.Cells[row, 21].Text),
+                    AttackPointPercent = ParseDecimal(worksheet.Cells[row, 22].Text),
+                    BlockPoints = ParseInt(worksheet.Cells[row, 23].Text)
                 });
             }
         }

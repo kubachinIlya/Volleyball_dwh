@@ -26,9 +26,9 @@ public static class Program
             config.DataPaths.BasePath
         );
         //Запуск обработки
-        matchImporter.ProcessAllMatches();
-        playerImporter.ProcessAllPlayers();
-        playersListImporter.ProcessAllPlayers();
+       // matchImporter.ProcessAllMatches();
+      //  playerImporter.ProcessAllPlayers();
+         playersListImporter.ProcessAllPlayers();
 
         //Инициализация парсера
         var parser = new VolleyServiceParser(
@@ -38,7 +38,7 @@ public static class Program
         );
 
         // Запуск парсера
-        await parser.StartParsing();
+       // await parser.StartParsing();
 
     }
 }
