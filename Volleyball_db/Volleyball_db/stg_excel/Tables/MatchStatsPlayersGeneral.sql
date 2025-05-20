@@ -3,6 +3,7 @@
     [FileName]                  NVARCHAR (255) NOT NULL,
     [FolderName]                NVARCHAR (500) NOT NULL,
     [MatchDate]                 DATETIME       DEFAULT (getdate()) NOT NULL,
+    [OpponentTeamName]          NVARCHAR (100) NOT NULL,
     [TeamName]                  NVARCHAR (100) NOT NULL,
     [PlayerNumber]              INT            NULL,
     [PlayerName]                NVARCHAR (100) NULL,

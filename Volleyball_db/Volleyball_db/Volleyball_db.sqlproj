@@ -70,6 +70,13 @@
     <Folder Include="Security\" />
     <Folder Include="pbi\" />
     <Folder Include="pbi\Views\" />
+    <Folder Include="stg_web\" />
+    <Folder Include="stg_web\Tables\" />
+    <Folder Include="etl\" />
+    <Folder Include="etl\Tables\" />
+    <Folder Include="ml_mart\" />
+    <Folder Include="ml_mart\Views\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\fact_MatchStatsPlayers.sql" />
@@ -112,5 +119,17 @@
     <Build Include="pbi\Views\v_D001_dim_Date.sql" />
     <Build Include="pbi\Views\v_F001_fact_MatchStatsPlayers.sql" />
     <Build Include="Security\pbi.sql" />
+    <Build Include="dbo\Tables\fact_PlayerStats.sql" />
+    <Build Include="dbo\Tables\fact_MatchStatsSets.sql" />
+    <Build Include="stg_web\Tables\PlayerStats.sql" />
+    <Build Include="etl\Tables\RegisteredFile.sql" />
+    <Build Include="ml_mart\Views\fact_MathReportByPlayersRich.sql" />
+    <Build Include="dbo\Stored Procedures\fill_fact_PlayerStats.sql" />
+    <Build Include="dbo\Stored Procedures\fill_fact_MatchStatsSets.sql" />
+    <Build Include="Storage\pf_MatchStatsPlayersBySeason.sql" />
+    <Build Include="Storage\ps_MatchStatsPlayersBySeason.sql" />
+    <Build Include="Security\stg_web.sql" />
+    <Build Include="Security\ml_mart.sql" />
+    <Build Include="Security\etl.sql" />
   </ItemGroup>
 </Project>

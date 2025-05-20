@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[fact_PlayerStats] (
+    [LoadDateID]        INT            NULL,
+    [PlayerID]          INT            NULL,
+    [PositionID]        INT            NULL,
+    [Games]             NVARCHAR (100) NULL,
+    [Points]            INT            NULL,
+    [AveragePoints]     DECIMAL (5, 2) NULL,
+    [PointsDifference]  INT            NULL,
+    [SourceTotal]       INT            NULL,
+    [SourcePoints]      INT            NULL,
+    [SourceEfficiency]  DECIMAL (5, 2) NULL,
+    [ReceiveTotal]      INT            NULL,
+    [ReceiveGood]       INT            NULL,
+    [ReceiveEfficiency] DECIMAL (5, 2) NULL,
+    [AttackTotal]       INT            NULL,
+    [AttackPoints]      INT            NULL,
+    [AttackEfficiency]  DECIMAL (5, 2) NULL,
+    [BlockPoints]       INT            NULL,
+    [BlockAverage]      DECIMAL (5, 2) NULL,
+    [ErrorServe]        INT            NULL,
+    [ErrorReceive]      INT            NULL,
+    [ErrorAttack]       INT            NULL,
+    [ErrorTotal]        INT            NULL
+);
+

@@ -1,3 +1,3 @@
-﻿CREATE SCHEMA [oth]
+﻿CREATE SCHEMA [etl]
     AUTHORIZATION [dbo];
 

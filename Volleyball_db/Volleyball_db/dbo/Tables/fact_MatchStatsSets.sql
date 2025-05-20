@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[fact_MatchStatsSets] (
+    [MatchDateID]               INT            NOT NULL,
+    [SeasonID]                  INT            NOT NULL,
+    [StageID]                   INT            NOT NULL,
+    [HostCityID]                INT            NOT NULL,
+    [HostTeamID]                INT            NOT NULL,
+    [GuestTeamID]               INT            NOT NULL,
+    [TeamID]                    INT            NOT NULL,
+    [SetNumber]                 INT            NOT NULL,
+    [PointsOnServe]             INT            NULL,
+    [PointsOnAttack]            INT            NULL,
+    [PointsOnBlock]             INT            NULL,
+    [PointsOnOpponentErrors]    INT            NULL,
+    [TotalPoints]               INT            NULL,
+    [ServeErrors]               INT            NULL,
+    [ServePoints]               INT            NULL,
+    [TotalReceptions]           INT            NULL,
+    [ReceptionErrors]           INT            NULL,
+    [PerfectReceptionPercent]   DECIMAL (5, 2) NULL,
+    [ExcellentReceptionPercent] DECIMAL (5, 2) NULL,
+    [TotalAttacks]              INT            NULL,
+    [AttackErrors]              INT            NULL,
+    [AttackBlocks]              INT            NULL,
+    [AttackPoints]              INT            NULL,
+    [AttackPointPercent]        DECIMAL (5, 2) NULL,
+    [BlockPoints]               INT            NULL
+);
+

@@ -4,6 +4,7 @@
     [PlayerNumber]         INT            NULL,
     [PlayerHeight]         INT            NULL,
     [PlayerBirthdayDateID] INT            NULL,
-    [PlayerCitizenship]    NVARCHAR (128) NULL
+    [PlayerCitizenship]    NVARCHAR (128) NULL,
+    CONSTRAINT [PK_dim_Players] PRIMARY KEY CLUSTERED ([PlayerID] ASC)
 );
 

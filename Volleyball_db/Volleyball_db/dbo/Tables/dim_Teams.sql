@@ -9,6 +9,7 @@
     [Phone]            NVARCHAR (32)  NULL,
     [Email]            NVARCHAR (128) NULL,
     [Website]          NVARCHAR (128) NULL,
-    PRIMARY KEY CLUSTERED ([TeamID] ASC)
+    PRIMARY KEY CLUSTERED ([TeamID] ASC),
+    CONSTRAINT [FK_dim_Teams_dim_Cities] FOREIGN KEY ([CityID]) REFERENCES [dbo].[dim_Cities] ([CityID])
 );
 

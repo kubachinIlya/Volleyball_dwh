@@ -1,0 +1,27 @@
+﻿CREATE TABLE [stg_web].[PlayerStats] (
+    [Id]                INT            IDENTITY (1, 1) NOT NULL,
+    [LoadDate]          DATETIME       DEFAULT (getdate()) NULL,
+    [Name]              NVARCHAR (255) NULL,
+    [Position]          NVARCHAR (50)  NULL,
+    [Games]             NVARCHAR (50)  NULL,
+    [Points]            INT            NULL,
+    [AveragePoints]     FLOAT (53)     NULL,
+    [PointsDifference]  INT            NULL,
+    [SourceTotal]       INT            NULL,
+    [SourcePoints]      INT            NULL,
+    [SourceEfficiency]  FLOAT (53)     NULL,
+    [ReceiveTotal]      INT            NULL,
+    [ReceiveGood]       FLOAT (53)     NULL,
+    [ReceiveEfficiency] FLOAT (53)     NULL,
+    [AttackTotal]       INT            NULL,
+    [AttackPoints]      INT            NULL,
+    [AttackEfficiency]  FLOAT (53)     NULL,
+    [BlockPoints]       INT            NULL,
+    [BlockAverage]      FLOAT (53)     NULL,
+    [ErrorServe]        INT            NULL,
+    [ErrorReceive]      INT            NULL,
+    [ErrorAttack]       INT            NULL,
+    [ErrorTotal]        INT            NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
