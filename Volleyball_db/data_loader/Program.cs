@@ -27,8 +27,8 @@ public static class Program
         );
         //Запуск обработки
        // matchImporter.ProcessAllMatches();
-      //  playerImporter.ProcessAllPlayers();
-         playersListImporter.ProcessAllPlayers();
+        playerImporter.ProcessAllPlayers();
+       //  playersListImporter.ProcessAllPlayers();
 
         //Инициализация парсера
         var parser = new VolleyServiceParser(
